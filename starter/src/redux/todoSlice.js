@@ -41,21 +41,6 @@ async (payload) => {
     }
 });
 
-export const deleteTodoAsync = createAsyncThunk('todos/completeTodoAsync',
-async (payload) => {
-    const response = await fetch(`http://localhost:7000/todos/${payload.id}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ id: payload.id })
-    })
-
-    if(response.ok){
-        const todo = await response.json();
-        return { id: todo.id };
-    }
-});
 
 const todoSlice = createSlice({
     name: "todos",
@@ -96,9 +81,6 @@ const todoSlice = createSlice({
             const index = state.findIndex((todo) => todo.id === action.payload.id);
             state[index].completed = action.payload.completed;
         },
-        [deleteTodoAsync.fulfilled]: (state, action) => {
-            return state.filter((todo) => todo.id !== action.payload.id);
-        }
     },
 });
 
