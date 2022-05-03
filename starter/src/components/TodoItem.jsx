@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { toggleCompleteAsync, deleteTodo, deleteTodoAsync } from '../redux/todoSlice';
+import { toggleCompleteAsync, deleteTodoAsync } from '../redux/todoSlice';
 
 const TodoItem = ({ id, title, completed }) => {
 	const dispatch = useDispatch();
